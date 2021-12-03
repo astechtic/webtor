@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <header>
+    <title>Webtor.io</title>
+  </header>  
+<body>
+    <div id="player" class="webtor" />
+    <script>
+      const params = new URLSearchParams(window.location.search)
+        window.webtor = window.webtor || [];
+        window.webtor.push({
+            id: params.get('id') != null ? params.get('id'): 'player',
+            magnet: params.get('magnet'),
+            on: function(e) {
+                if (e.name == window.webtor.TORRENT_FETCHED) {
+                    console.log('Torrent fetched!', e.data);
+                }
+                if (e.name == window.webtor.TORRENT_ERROR) {
+                    console.log('Torrent error!');
+                }
+            },
+            poster: params.get('poster') != null ? params.get('poster'):  'https://via.placeholder.com/150/0000FF/808080',
+            lang: 'en',
+            i18n: {
+                en: {
+                    common: {
+                        "prepare to play": "Preparing Video Stream... Please Wait...",
+                    },
+                    stat: {
+                        "seeding": "Seeding",
+                        "waiting": "Client initialization",
+                        "waiting for peers": "Waiting for peers",
+                        "from": "from",
+                    },
+                },
+            },
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@webtor/embed-sdk-js/dist/index.min.js" charset="utf-8" async></script>
+</body>
+</html>
+
