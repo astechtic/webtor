@@ -8,7 +8,7 @@
   </header>  
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-N8JTXSKSBH"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N8JTXSKSBH"></script>    
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -17,6 +17,7 @@
   gtag('config', 'G-N8JTXSKSBH');
 </script>
 <meta name="google-site-verification" content="pgncQflxmc43gBy6rV6jj8lzBQtKYkZUFqAHAgSUvnI" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
   </head>  
 <body>
  <style>
@@ -69,16 +70,16 @@ body{
   transform: translate(-50%, -50%);
 }
 </style>  
-<form onsubmit="return submitted()">  
 <div class="wrap">
    <div class="search">
+     <form onsubmit="return submitted()">  
       <input id="search" type="text" class="searchTerm" placeholder="Input magnet link here">
       <button type="submit" class="searchButton">
         <i class="fa fa-search"></i>
      </button>
+     </form>    
    </div>
 </div>
-</form>  
 <script>
 function submitted() {
     location.replace("https://astechtic.github.io/webtor/player.html?magnet="+document.getElementById("search").value)
