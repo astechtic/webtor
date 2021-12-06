@@ -19,65 +19,78 @@
 <meta name="google-site-verification" content="pgncQflxmc43gBy6rV6jj8lzBQtKYkZUFqAHAgSUvnI" />
   </head>  
 <body>
-    <style>
-        .dimScreen
-{
-    position:fixed;
-    padding:0;
-    margin:0;
-
-    top:0;
-    left:0;
-
-    width: 100%;
-    height: 100%;
-    background:rgba(255,255,255,0.5);
+  <style>
+  //Vars 
+:root {
+  --rad: .7rem;
+  --dur: .3s;
+  --color-dark: #2f2f2f;
+  --color-light: #fff;
+  --color-brand: #57bd84;
+  --font-fam: 'Lato', sans-serif;
+  --height: 5rem;
+  --btn-width: 6rem;
+  --bez: cubic-bezier(0, 0, 0.43, 1.49);
 }
-    </style>
-   
-    <div id="player" class="webtor dimScreen"></div>
-    <script>
-        const params = new URLSearchParams(window.location.search)
-        window.webtor = window.webtor || [];
-        window.webtor.push({
-            id: 'player',
-            magnet: params.get('magnet') != null ? params.get('magnet') : 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F',
-            on: function(e) {
-                if (e.name == window.webtor.TORRENT_FETCHED) {
-                    console.log('Torrent fetched!', e.data);
-                }
-                if (e.name == window.webtor.TORRENT_ERROR) {
-                    console.log('Torrent error!');
-                }
-            },
-//             poster: 'https://via.placeholder.com/150/0000FF/808080',
-            width:"100%",
-            height:"100%",
-//             subtitles: [
-//                 {
-//                     srclang: 'en',
-//                     label: 'test',
-//                     src: 'https://raw.githubusercontent.com/andreyvit/subtitle-tools/master/sample.srt',
-//                     default: true,
-//                 }
-//             ],
-            lang: 'en',
-            i18n: {
-                en: {
-                    common: {
-                        "prepare to play": "Preparing Video Stream... Please Wait...",
-                    },
-                    stat: {
-                        "seeding": "Seeding",
-                        "waiting": "Client initialization",
-                        "waiting for peers": "Waiting for peers",
-                        "from": "from",
-                    },
-                },
-            },
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@webtor/embed-sdk-js/dist/index.min.js" charset="utf-8" async></script>
+
+// Setup
+body {background: var(--color-dark); display: flex; align-items: center; justify-content: center; min-height: 100vh }
+html { box-sizing: border-box; height: 100%; font-size: 10px; } *, *::before, *::after { box-sizing: inherit; }
+
+// Main styles
+form {
+  position: relative;
+  width: 30rem;
+  background: var(--color-brand);
+  border-radius: var(--rad);
+}
+input, button {
+  height: var(--height);
+  font-family: var(--font-fam);
+  border: 0;
+  color: var(--color-dark);
+  font-size: 1.8rem;
+}
+input[type="search"] {
+  outline: 0; // <-- shold probably remove this for better accessibility, adding for demo aesthetics for now.
+  width: 100%;
+  background: var(--color-light);
+  padding: 0 1.6rem;
+  border-radius: var(--rad);
+  appearance: none; //for iOS input[type="search"] roundedness issue. border-radius alone doesn't work
+  transition: all var(--dur) var(--bez);
+  transition-property: width, border-radius;
+  z-index: 1;
+  position: relative;
+}
+button {
+  display: none; // prevent being able to tab to it
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--btn-width);
+  font-weight: bold;
+  background: var(--color-brand);
+  border-radius: 0 var(--rad) var(--rad) 0;
+}
+input:not(:placeholder-shown) {
+  border-radius: var(--rad) 0 0 var(--rad);
+  width: calc(100% - var(--btn-width));
+  + button {
+    display: block;
+  }
+}
+
+</style>  
+<script>
+function myFunction() {
+    location.replace("https://astechtic.github.io/webtor/player.html?magnet="+document.getElementById("search").value)
+}
+</script>  
+<form onsubmit="myFunction();" role="search">
+  <input id="search" type="search" placeholder="Input magnet link here" autofocus required />
+  <button type="submit">Go</button>    
+</form>
 
 </body>
 </html>
