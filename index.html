@@ -40,8 +40,8 @@ body{
   border-right: none;
   padding: 5px;
   height: 20px;
-  border-radius: 5px 0 0 5px;
-  outline: none;
+  border-radius: 5px 5px 5px 5px;
+/*   outline: none; */
   color: #9DBFAF;
 }
 
@@ -49,34 +49,11 @@ body{
   color: #00B4CC;
 }
 
-.searchButton {
-  width: 40px;
-  height: 36px;
-  border: 1px solid #00B4CC;
-  background: #00B4CC;
-  text-align: center;
-  color: #fff;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-/*Resize the wrap to see the search bar change!*/
-.wrap{
-  width: 30%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 </style>  
 <div class="wrap">
    <div class="search">
      <form method="get" action="/webtor/player.html">  
       <input id="search" type="text" name="magnet" class="searchTerm" placeholder="Input magnet link here" onfocus="if(this.value==this.defaultValue)this.value=''; this.style.color='black';" onblur="if(this.value=='')this.value=this.defaultValue;>
-      <button type="submit" class="searchButton" value="Search">
-        <i class="fa fa-search"></i>
-     </button>
      </form>    
    </div>
 </div>
