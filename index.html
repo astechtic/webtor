@@ -69,16 +69,18 @@ body{
   transform: translate(-50%, -50%);
 }
 </style>  
+<form onsubmit="return submitted()">  
 <div class="wrap">
    <div class="search">
-      <input id="search" type="text" class="searchTerm" onsubmit="myFunction();" placeholder="Input magnet link here">
-      <button type="submit" class="searchButton" onsubmit="myFunction();">
+      <input id="search" type="text" class="searchTerm" placeholder="Input magnet link here">
+      <button type="submit" class="searchButton">
         <i class="fa fa-search"></i>
      </button>
    </div>
 </div>
+</form>  
 <script>
-function myFunction() {
+function submitted() {
     location.replace("https://astechtic.github.io/webtor/player.html?magnet="+document.getElementById("search").value)
 }
 </script>  
